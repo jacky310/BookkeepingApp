@@ -20,8 +20,8 @@ const RecentsRoute = () => <Text>Recents</Text>;
 const App = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'dashboard', title: 'Dashboard', icon: 'air-humidifier' },
-    { key: 'form', title: 'Form', icon: 'album' },
+    { key: 'dashboard', title: 'Dashboard', icon: 'chart-line' },
+    { key: 'form', title: 'Form', icon: 'pencil' },
     { key: 'recents', title: 'Recents', icon: 'history' },
   ]);
 

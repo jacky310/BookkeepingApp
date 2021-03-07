@@ -8,8 +8,9 @@ import {Button, Card} from 'react-native-paper';
 import MonthPicker from 'react-native-month-year-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
+import theme from '../../config/theme';
 
-class DatePicker extends Component {
+class MonthYearPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,7 +37,8 @@ class DatePicker extends Component {
         const selectedDate = newDate || this.state.dateFrom;
         this.showDateFromPickerHandler(false);
         this.setState({
-            dateFrom: selectedDate
+            dateFrom: selectedDate,
+            dateEnd: new Date()
         });
       }
 
@@ -50,14 +52,9 @@ class DatePicker extends Component {
 
     render(){
         return(
-            <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-            <Card elevation={3} style={styles.pickerCard}>
-                <View style={styles.pickerCardView}>
+            <View style={styles.datePickerView}>
+            <Card elevation={3} style={styles.datePickerCard}>
+                <View style={styles.datePickerCardView}>
                     <Button style={styles.button} onPress={() => this.showDateFromPickerHandler(true)}>
                         <Text>{moment(this.state.dateFrom, "MM-YYYY").format('MMM - YYYY')}</Text>
                     </Button>
@@ -93,26 +90,26 @@ const styles = StyleSheet.create({
     arrow: {
         textAlign: 'center',
         width: 50,
-        color: '#6200ee',
+        color: theme.colors.primary,
     },
-    pickerCard: {
+    datePickerView: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    datePickerCard: {
         marginTop: 20,
     },
-    pickerCardView: {
+    datePickerCardView: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: "center",
         alignItems: "center",
     },
-    text: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        width: 50
-    },
     button: {
-        // backgroundColor: "white",
         width: 120
     }
 });
 
-export default DatePicker;
+export default MonthYearPicker;

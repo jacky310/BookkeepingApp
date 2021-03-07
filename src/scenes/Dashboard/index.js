@@ -1,33 +1,17 @@
+// @flow
 import React, { Component } from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  View,
-  Text,
   StatusBar,
-  TouchableOpacity
+  StyleSheet,
+  View,
 } from 'react-native';
-import { Headline, Button, Appbar, Card} from 'react-native-paper';
-import DatePicker from '../../components/DatePicker';
-import MonthPicker from 'react-native-month-year-picker';
-import { VictoryPie} from "victory-native";
-import moment from 'moment';
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-
-const data = [
-  { quarter: 1, earnings: 13000 },
-  { quarter: 2, earnings: 16500 },
-  { quarter: 3, earnings: 14250 },
-  { quarter: 4, earnings: 19000 }
-];
+import { Appbar } from 'react-native-paper';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import SpendingDistributionPieChart from '../../components/Dashboard/SpendingDistributionPieChart';
+import SpendingLineChart from '../../components/Dashboard/SpendingLineChart';
+import MonthYearPicker from '../../components/MonthYearPicker';
 
 class DashboardSrceen extends Component {
   constructor(props) {
@@ -35,23 +19,23 @@ class DashboardSrceen extends Component {
     this.rowIndex0 = 0;
     this.state = {
       date: new Date(),
-      show: false
+      show: false,
     };
   }
 
   showPicker = (value) => {
     this.setState({
-      show: value
+      show: value,
     });
-  }
+  };
 
   onValueChange = (event, newDate) => {
-    const selectedDate = newDate || date;
+    const selectedDate = newDate || this.state.date;
     this.showPicker(false);
     this.setState({
-      date: selectedDate
+      date: selectedDate,
     });
-  }
+  };
 
   render() {
     return (
@@ -64,34 +48,10 @@ class DashboardSrceen extends Component {
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
+            <MonthYearPicker />
             <View style={styles.body}>
-              <DatePicker/>
-              {/* <Text>From:</Text>
-              <Button mode="outlined" onPress={() => this.showPicker(true)}>
-                <Text>{moment(this.state.date, "MM-YYYY").format('MMM')} - {moment(this.state.date, "MM-YYYY").format('YYYY')}</Text>
-              </Button>
-              <Text>To:</Text>
-              <Button onPress={() => this.showPicker(true)}>
-                <Text>{moment(this.state.date, "MM-YYYY").format('MMM')} - {moment(this.state.date, "MM-YYYY").format('YYYY')}</Text>
-              </Button>
-              {this.state.show && (
-                <MonthPicker
-                  onChange={(e, newDate) => this.onValueChange(e, newDate)}
-                  value={this.state.date}
-                  maximumDate={new Date()}
-                  locale="en"
-                />
-              )} */}
-              <View style={styles.container}>
-                <VictoryPie
-                  innerRadius={100}
-                  data={[
-                    { x: "Cats", y: 50 },
-                    { x: "Dogs", y: 49 },
-                    { x: "Birds", y: 1 }
-                  ]}
-                />
-              </View>
+              <SpendingDistributionPieChart style={styles.pieChart} />
+              <SpendingLineChart style={styles.lineChart} />
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -101,20 +61,30 @@ class DashboardSrceen extends Component {
 }
 
 const styles = StyleSheet.create({
+  pieChart: {
+    marginTop: 20,
+  },
+  lineChart: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   scrollView: {
-    backgroundColor: Colors.lighter,
+    backgroundColor: Colors.white,
   },
   engine: {
     position: 'absolute',
     right: 0,
   },
   body: {
-    backgroundColor: Colors.white,
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingBottom: 50,
   },
   sectionContainer: {
     marginTop: 32,
