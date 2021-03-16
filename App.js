@@ -7,13 +7,11 @@
  */
 
 import * as React from 'react';
+import {StyleSheet} from 'react-native';
 import FormScreen from './src/scenes/Form';
-import DashboardSrceen from './src/scenes/Dashboard';
+import DashboardScreen from './src/scenes/Dashboard';
 import { BottomNavigation, Text } from 'react-native-paper';
 
-const MusicRoute = () => <Text>Music</Text>;
-
-const AlbumsRoute = () => <Text>Albums</Text>;
 
 const RecentsRoute = () => <Text>Recents</Text>;
 
@@ -27,17 +25,25 @@ const App = () => {
 
   const renderScene = BottomNavigation.SceneMap({
     form: FormScreen,
-    dashboard: DashboardSrceen,
+    dashboard: DashboardScreen,
     recents: RecentsRoute,
   });
 
   return (
     <BottomNavigation
+        barStyle={styles.bottomNavigation}
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  bottomNavigation: {
+    backgroundColor: 'white'
+  }
+});
+
 
 export default App;

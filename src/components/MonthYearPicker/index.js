@@ -5,10 +5,10 @@ import {
     Text,
 } from 'react-native';
 import {Button, Card} from 'react-native-paper';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import MonthPicker from 'react-native-month-year-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
-import theme from '../../config/theme';
 
 class MonthYearPicker extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class MonthYearPicker extends Component {
             showDateEndPicker: false
         };
       }
-    
+
       showDateFromPickerHandler = (value) => {
         this.setState({
             showDateFromPicker: value
@@ -32,7 +32,7 @@ class MonthYearPicker extends Component {
             showDateEndPicker: value
         });
       }
-    
+
       onDateFromChange = (event, newDate) => {
         const selectedDate = newDate || this.state.dateFrom;
         this.showDateFromPickerHandler(false);
@@ -56,13 +56,13 @@ class MonthYearPicker extends Component {
             <Card elevation={3} style={styles.datePickerCard}>
                 <View style={styles.datePickerCardView}>
                     <Button style={styles.button} onPress={() => this.showDateFromPickerHandler(true)}>
-                        <Text>{moment(this.state.dateFrom, "MM-YYYY").format('MMM - YYYY')}</Text>
+                        <Text style={styles.text}>{moment(this.state.dateFrom, "MM-YYYY").format('MMM - YYYY')}</Text>
                     </Button>
                     <Icon name="arrow-right" size={15} style={styles.arrow}/>
                     <Button style={styles.button} onPress={() => this.showDateEndPickerHandler(true)}>
-                        <Text>{moment(this.state.dateEnd, "MM-YYYY").format('MMM - YYYY')}</Text>
+                        <Text style={styles.text}>{moment(this.state.dateEnd, "MM-YYYY").format('MMM - YYYY')}</Text>
                     </Button>
-                </View> 
+                </View>
             </Card>
             {this.state.showDateFromPicker && (
                 <MonthPicker
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     arrow: {
         textAlign: 'center',
         width: 50,
-        color: theme.colors.primary,
+        color: Colors.black,
     },
     datePickerView: {
         flex: 1,
@@ -108,7 +108,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     button: {
-        width: 120
+        width: 120,
+    },
+    text: {
+        color: Colors.black
     }
 });
 

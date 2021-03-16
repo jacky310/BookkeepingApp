@@ -7,54 +7,29 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { Appbar } from 'react-native-paper';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import SpendingDistributionPieChart from '../../components/Dashboard/SpendingDistributionPieChart';
 import SpendingLineChart from '../../components/Dashboard/SpendingLineChart';
 import MonthYearPicker from '../../components/MonthYearPicker';
 
-class DashboardSrceen extends Component {
+class DashboardScreen extends Component {
   constructor(props) {
     super(props);
-    this.rowIndex0 = 0;
-    this.state = {
-      date: new Date(),
-      show: false,
-    };
   }
 
-  showPicker = (value) => {
-    this.setState({
-      show: value,
-    });
-  };
-
-  onValueChange = (event, newDate) => {
-    const selectedDate = newDate || this.state.date;
-    this.showPicker(false);
-    this.setState({
-      date: selectedDate,
-    });
-  };
 
   render() {
     return (
       <>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <Appbar.Header>
-            <Appbar.Content title="Dashboard"/>
-          </Appbar.Header>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            <MonthYearPicker />
-            <View style={styles.body}>
-              <SpendingDistributionPieChart style={styles.pieChart} />
-              <SpendingLineChart style={styles.lineChart} />
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <MonthYearPicker />
+          <View style={styles.body}>
+            <SpendingDistributionPieChart style={styles.pieChart} />
+            <SpendingLineChart style={styles.lineChart} />
+          </View>
+        </ScrollView>
       </>
     );
   }
@@ -114,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DashboardSrceen;
+export default DashboardScreen;

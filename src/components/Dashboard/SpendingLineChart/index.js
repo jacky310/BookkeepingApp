@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-} from 'react-native';
-import { Card } from 'react-native-paper';
-import { VictoryChart, VictoryLine, VictoryTheme } from "victory-native";
-import theme from "../../../config/theme";
+import React, {Component} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {Card} from 'react-native-paper';
+import {VictoryChart, VictoryLine, VictoryTheme} from 'victory-native';
+import theme from '../../../config/theme';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-class SpendingLineChart extends Component{
-    render(){
-        return(
+class SpendingLineChart extends Component {
+    render() {
+        return (
             <Card
-                elevation={3} 
+                elevation={3}
                 style={styles.card}>
                 <Text style={styles.cardTitle}>Daily Spending</Text>
                 <View style={styles.cardView}>
@@ -24,22 +21,22 @@ class SpendingLineChart extends Component{
                         >
                             <VictoryLine
                                 style={{
-                                    data: { stroke: "#c43a31" },
-                                    parent: { border: "1px solid #ccc"}
+                                    data: {stroke: '#c43a31'},
+                                    parent: {border: '1px solid #ccc'},
                                 }}
                                 data={[
-                                { x: 1, y: 2 },
-                                { x: 2, y: 3 },
-                                { x: 3, y: 5 },
-                                { x: 4, y: 4 },
-                                { x: 5, y: 7 }
+                                    {x: 1, y: 2},
+                                    {x: 2, y: 3},
+                                    {x: 3, y: 5},
+                                    {x: 4, y: 4},
+                                    {x: 5, y: 7},
                                 ]}
                             />
                         </VictoryChart>
                     </View>
                 </View>
             </Card>
-        )
+        );
     }
 }
 
@@ -47,7 +44,7 @@ const styles = StyleSheet.create({
     card: {
         marginTop: 20,
         marginBottom: 20,
-        width: "90%",
+        width: '90%',
     },
     cardView: {
         flex: 1,
@@ -60,11 +57,11 @@ const styles = StyleSheet.create({
         marginBottom: -40,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: theme.colors.primary
+        color: Colors.black,
     },
     chart: {
-        marginLeft: 20
-    }
+        marginLeft: 20,
+    },
 });
 
 export default SpendingLineChart;
